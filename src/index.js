@@ -5,7 +5,11 @@ module.exports = function check(str, bracketsConfig) {
     for (const brack of str.split``) {
         if (checkArr[0] === brack) {
           checkArr.shift();
-        } else brackets[brack] ? checkArr.unshift(brackets[brack]) : false;
+        } else if (brackets[brack]) {
+          checkArr.unshift(brackets[brack]);
+        } else {
+          return false;
+        }
     }
 
     return checkArr.length === 0;
